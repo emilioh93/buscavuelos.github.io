@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 
 const FormularioBusqueda = () => {
   //   const [moneda, setMoneda] = useState("");
@@ -23,42 +23,55 @@ const FormularioBusqueda = () => {
     })
       .then((response) => response.json())
       .then((datos) => {
-        console.log(datos);
-        setArregloMonedas([datos]);
+        console.log(datos.Currencies);
+        setArregloMonedas([datos.Currencies]);
       })
       .catch((err) => {
         console.error(err);
       });
   };
 
-  console.log("arregloMonedas", arregloMonedas[0].Currencies[0].Code);
+  // let codigo = arregloMonedas.map((moneda) => {
+  //   // arregloMoneda[0].Code;
+  //   console.log("Moneda", moneda);
+  //   moneda.map((code) => {
+  //     console.log("Code", code.Code);
+  //   });
+  // });
+  // console.log("codigo", codigo);
+  // console.log("arregloMonedas", arregloMonedas);
 
   return (
-    <Form className="mt-5">
-      <section className="row d-flex justify-content-center">
-        <div className="col-md-2 col-sm-12">
-          <Form.Control type="text" placeholder="Destino" />
-        </div>
-        <div className="col-md-2 col-sm-12">
-          <Form.Control type="text" placeholder="Origen" />
-        </div>
-        <div className="col-md-2 col-sm-12">
-          <Form.Select aria-label="Default select example">
-            {arregloMonedas.map((arregloMoneda) => (
-              <option key={arregloMoneda.toString()}>
-                {arregloMoneda.Currencies.Code}
-              </option>
-            ))}
-          </Form.Select>
-        </div>
-        <div className="col-md-2 col-sm-12">
-          <Form.Control type="text" placeholder="Locale" />
-        </div>
-        <div className="col-md-2 col-sm-12">
-          <Button className="w-100">Buscar</Button>
-        </div>
-      </section>
-    </Form>
+    <Container>
+      <Form className="mt-5">
+        <section className="row d-flex justify-content-center">
+          <div className="col-md-2 col-sm-12">
+            <Form.Control type="text" placeholder="Destino" />
+          </div>
+          <div className="col-md-2 col-sm-12">
+            <Form.Control type="text" placeholder="Origen" />
+          </div>
+          <div className="col-md-2 col-sm-12">
+            <Form.Select aria-label="Default select example">
+              {arregloMonedas &&
+                arregloMonedas.map((moneda) => {
+                  console.log("Moneda", moneda);
+                  moneda.map((code) => {
+                    console.log("code.Code", code.Code);
+                    <option>{code.Code}</option>;
+                  });
+                })}
+            </Form.Select>
+          </div>
+          <div className="col-md-2 col-sm-12">
+            <Form.Control type="text" placeholder="Locale" />
+          </div>
+          <div className="col-md-2 col-sm-12">
+            <Button className="w-100">Buscar</Button>
+          </div>
+        </section>
+      </Form>
+    </Container>
   );
 };
 
