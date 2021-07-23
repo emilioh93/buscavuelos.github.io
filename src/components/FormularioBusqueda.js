@@ -24,22 +24,12 @@ const FormularioBusqueda = () => {
       .then((response) => response.json())
       .then((datos) => {
         console.log(datos.Currencies);
-        setArregloMonedas([datos.Currencies]);
+        setArregloMonedas(datos.Currencies);
       })
       .catch((err) => {
         console.error(err);
       });
   };
-
-  // let codigo = arregloMonedas.map((moneda) => {
-  //   // arregloMoneda[0].Code;
-  //   console.log("Moneda", moneda);
-  //   moneda.map((code) => {
-  //     console.log("Code", code.Code);
-  //   });
-  // });
-  // console.log("codigo", codigo);
-  // console.log("arregloMonedas", arregloMonedas);
 
   return (
     <Container>
@@ -55,11 +45,11 @@ const FormularioBusqueda = () => {
             <Form.Select aria-label="Default select example">
               {arregloMonedas &&
                 arregloMonedas.map((moneda) => {
-                  console.log("Moneda", moneda);
-                  moneda.map((code) => {
-                    console.log("code.Code", code.Code);
-                    <option>{code.Code}</option>;
-                  });
+                  return (
+                    <option>
+                      {moneda.Symbol} {moneda.Code}
+                    </option>
+                  );
                 })}
             </Form.Select>
           </div>
