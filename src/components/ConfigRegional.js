@@ -5,6 +5,8 @@ import { Form, FloatingLabel } from "react-bootstrap";
 const ConfigRegional = () => {
   const [arregloMonedas, setArregloMonedas] = useState([]);
   const [arregloPaises, setArregloPaises] = useState([]);
+  const [moneda, setMoneda] = useState("");
+  const [idioma, setIdioma] = useState("");
 
   let consultarMonedaURL =
     "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/reference/v1.0/currencies";
@@ -27,7 +29,6 @@ const ConfigRegional = () => {
     })
       .then((response) => response.json())
       .then((datos) => {
-        console.log(datos.Currencies);
         setArregloMonedas(datos.Currencies);
       })
       .catch((err) => {
@@ -46,7 +47,6 @@ const ConfigRegional = () => {
     })
       .then((response) => response.json())
       .then((datos) => {
-        console.log(datos.Countries);
         setArregloPaises(datos.Countries);
       })
       .catch((err) => {
@@ -57,7 +57,7 @@ const ConfigRegional = () => {
   return (
     <Fragment>
       <FloatingLabel controlId="floatingSelect" label="Moneda">
-        <Form.Select id="contenedorMonedas" aria-label="Default select example">
+        <Form.Select onChange={(e) => setMoneda(e.target.value)} id="contenedorMonedas" aria-label="Default select example">
           {arregloMonedas &&
             arregloMonedas.map((moneda) => {
               return (
@@ -69,7 +69,7 @@ const ConfigRegional = () => {
         </Form.Select>
       </FloatingLabel>
       <FloatingLabel className="ms-3" controlId="floatingSelect" label="País/región">
-        <Form.Select id="contenedorPaises" aria-label="Default select example">
+        <Form.Select onChange={(e) => setIdioma(e.target.value)} id="contenedorPaises" aria-label="Default select example">
           {arregloPaises &&
             arregloPaises.map((pais) => {
               return (
