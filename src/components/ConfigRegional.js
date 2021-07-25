@@ -57,7 +57,11 @@ const ConfigRegional = () => {
   return (
     <Fragment>
       <FloatingLabel controlId="floatingSelect" label="Moneda">
-        <Form.Select onChange={(e) => setMoneda(e.target.value)} id="contenedorMonedas" aria-label="Default select example">
+        <Form.Select
+          onChange={(e) => setMoneda(e.target.value)}
+          id="contenedorMonedas"
+          aria-label="Default select example"
+        >
           {arregloMonedas &&
             arregloMonedas.map((moneda) => {
               return (
@@ -68,8 +72,16 @@ const ConfigRegional = () => {
             })}
         </Form.Select>
       </FloatingLabel>
-      <FloatingLabel className="ms-3" controlId="floatingSelect" label="País/región">
-        <Form.Select onChange={(e) => setIdioma(e.target.value)} id="contenedorPaises" aria-label="Default select example">
+      <FloatingLabel
+        className="ms-3"
+        controlId="floatingSelect"
+        label="País/región"
+      >
+        <Form.Select
+          onChange={(e) => setIdioma(e.target.value)}
+          id="contenedorPaises"
+          aria-label="Default select example"
+        >
           {arregloPaises &&
             arregloPaises.map((pais) => {
               return (

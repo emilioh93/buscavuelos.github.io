@@ -1,18 +1,29 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 const Resultado = (props) => {
+  const objeto = props.resultados.map((resultado) => {
+    return (
+      <tr>
+        <td>{resultado.Carriers}</td>;
+      </tr>
+    );
+  });
+
+  console.log(objeto);
+
   return (
-    <ListGroup className="mt-5">
-      {props.resultado.map((item) => {
-        return (
-          <ListGroup.Item>
-            {props.resultado.indexOf(item) + 1}- {item.PlaceName}{" "}
-            <strong>{item.CountryName}</strong>
-          </ListGroup.Item>
-        );
-      })}
-    </ListGroup>
+    <Table className="mt-5">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>{}</tbody>
+    </Table>
   );
 };
 
