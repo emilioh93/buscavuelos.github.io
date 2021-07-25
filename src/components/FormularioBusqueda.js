@@ -48,14 +48,15 @@ const FormularioBusqueda = () => {
       });
       const datos = await respuesta.json();
       console.log("respuesta", respuesta);
-      setResultados(datos);
+      await setResultados( datos );
       console.log("datos", datos);
     } catch (err) {
       console.log("error", err);
     }
   };
 
-  console.log(resultados);
+  console.log("Resultados", resultados);
+  console.log("Resultados.Carriers", resultados.Carriers);
 
   return (
     <Container>

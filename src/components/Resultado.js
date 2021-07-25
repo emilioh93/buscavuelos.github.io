@@ -2,27 +2,31 @@ import React from "react";
 import { Table } from "react-bootstrap";
 
 const Resultado = (props) => {
-  const objeto = props.resultados.map((resultado) => {
-    return (
-      <tr>
-        <td>{resultado.Carriers}</td>;
-      </tr>
-    );
+  const aerolineas = props.resultados.Carriers.map((resultado) => {
+    return <td>{resultado.Name}</td>;
   });
 
-  console.log(objeto);
+  const origen = props.resultados.Places.map((resultado) => {
+    return <td>{resultado.Name}</td>;
+  });
+
+  console.log(aerolineas);
+  console.log(origen);
 
   return (
     <Table className="mt-5">
       <thead>
         <tr>
-          <th>#</th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th>Aerolineas</th>
+          <th>Origen</th>
         </tr>
       </thead>
-      <tbody>{}</tbody>
+      <tbody>
+        <tr>
+          {aerolineas}
+          {origen}
+        </tr>
+      </tbody>
     </Table>
   );
 };
