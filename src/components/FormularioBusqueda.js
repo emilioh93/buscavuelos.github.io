@@ -15,6 +15,7 @@ const FormularioBusqueda = () => {
 
   useEffect(() => {
     consultarPais();
+    consultarResultado();
   }, []);
 
   const consultarPais = () => {
@@ -35,28 +36,23 @@ const FormularioBusqueda = () => {
       });
   };
 
-  const consultarResultado = async () => {
-    try {
-      const respuesta = await fetch(resultadosURL, {
-        method: "GET",
-        headers: {
-          "x-rapidapi-key":
-            "3a61d965efmsh763ab4a859eb191p1173b1jsn61d45064a77d",
-          "x-rapidapi-host":
-            "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-        },
+  const consultarResultado = () => {
+    fetch(resultadosURL, {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": "3a61d965efmsh763ab4a859eb191p1173b1jsn61d45064a77d",
+        "x-rapidapi-host":
+          "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setResultados(data))
+      .catch((err) => {
+        console.log("error", err);
       });
-      const datos = await respuesta.json();
-      console.log("respuesta", respuesta);
-      await setResultados( datos );
-      console.log("datos", datos);
-    } catch (err) {
-      console.log("error", err);
-    }
   };
 
   console.log("Resultados", resultados);
-  console.log("Resultados.Carriers", resultados.Carriers);
 
   return (
     <Container>
